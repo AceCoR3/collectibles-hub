@@ -35,6 +35,7 @@ create table if not exists public.items (
   acquired_at date,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
+  unique (id, owner_id),
   constraint items_collection_owner_fk foreign key (collection_id, owner_id)
     references public.collections(id, owner_id) on delete set null (collection_id)
 );
